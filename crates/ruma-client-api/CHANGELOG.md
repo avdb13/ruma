@@ -1,5 +1,59 @@
 # [unreleased]
 
+Bug fixes:
+
+- Don't require the `failures` field in the
+  `ruma_client_api::keys::upload_signatures::Response` type.
+
+Breaking changes:
+
+- The conversion from `PushRule` to `ConditionalPushRule` is infallible since
+  the `conditions` field is optional.
+  - `MissingConditionsError` was removed.
+
+Improvements:
+
+- Point links to the Matrix 1.9 specification
+- Add the `get_authentication_issuer` endpoint from MSC2965 behind the
+  `unstable-msc2965` feature.
+- Add `error_kind` accessor method to `ruma_client_api::Error`
+- Add `FromHttpResponseErrorExt` trait that adds an `error_kind` accessor to
+  `FromHttpResponseError<ruma_client_api::Error>`
+- Add deprecated `user` fields for `m.login.password` and `m.login.appservice`
+  login types.
+- Add deprecated `address` and `medium` 3PID fields for `m.login.password`
+  login type.
+- Add optional cookie field to `session::sso_login*::v3` responses.
+
+# 0.17.4
+
+Improvements:
+
+- Change the `avatar` field of `SlidingSyncRoom` from `Option` to `JsOption`
+  - This is a breaking change, but only for users enabling the
+    `unstable-msc3575` feature
+
+# 0.17.3
+
+Bug fixes:
+
+- Fix deserialization of `claim_keys` responses without a `failures` field
+
+# 0.17.2
+
+Improvements:
+
+- Add unstable support for MSC3983
+
+# 0.17.1
+
+Improvements:
+
+- Add a ErrorKind variant for the "M_WRONG_ROOM_KEYS_VERSION" Matrix error.
+
+# 0.17.0
+
+>>>>>>> abebde0c (client-api: Add optional cookie field to `sso_login*::Response`)
 Breaking changes:
 
 - Define `rank` as an `Option<f64>` instead of an `Option<UInt>` in
